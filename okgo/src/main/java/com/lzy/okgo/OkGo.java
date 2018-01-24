@@ -55,6 +55,7 @@ public class OkGo {
     private long mCacheTime = CacheEntity.CACHE_NEVER_EXPIRE;   //全局缓存过期时间,默认永不过期
     private static Application context;                         //全局上下文
     private CookieJarImpl cookieJar;                            //全局 Cookie 实例
+    private HttpHeaders mCommonHeaders1;
 
     private OkGo() {
         okHttpClientBuilder = new OkHttpClient.Builder();
@@ -272,7 +273,7 @@ public class OkGo {
 
     /** 获取全局公共请求头 */
     public HttpHeaders getCommonHeaders() {
-        return mCommonHeaders;
+        return mCommonHeaders1;
     }
 
     /** 添加全局公共请求参数 */

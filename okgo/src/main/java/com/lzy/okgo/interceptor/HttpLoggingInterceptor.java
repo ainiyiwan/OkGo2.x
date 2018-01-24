@@ -25,7 +25,7 @@ import okio.Buffer;
  * 版    本：1.0
  * 创建日期：2016/1/12
  * 描    述：OkHttp拦截器，主要用于打印日志
- * 修订历史：
+ * 修订历史：想自定义这个类也很简单，把logger换成别的工具就可以了，因为，所有的打印方法都在log这个方法里
  * ================================================
  */
 public class HttpLoggingInterceptor implements Interceptor {
