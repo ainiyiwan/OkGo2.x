@@ -1,9 +1,9 @@
 # OkGo2.x
 OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4 
 
-##1.调用init()方法，保存一个context，具体用处？
+## 1.调用init()方法，保存一个context，具体用处？
 
-##2.初始化的时候调用getInstance()，获取OkGo的单例
+## 2.初始化的时候调用getInstance()，获取OkGo的单例
 ```java
     public static OkGo getInstance() {
         return OkGoHolder.holder;
@@ -25,7 +25,7 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
         mDelivery = new Handler(Looper.getMainLooper());
     }
 ```
-##3.调用debug方法
+## 3.调用debug方法
 ```java
 // 打开该调试开关,打印级别INFO,并不是异常,是为了显眼,不需要就不要加入该行
 // 最后的true表示是否打印okgo的内部异常，一般打开方便调试错误
@@ -46,7 +46,7 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
         return this;
     }
 ```
-###3.1 HttpLoggingInterceptor的巧妙设计
+### 3.1 HttpLoggingInterceptor的巧妙设计
 日志工具的核心就是log这个方法，所以这个方法一定要封装起来，后面方便替换
 ```java
     public void log(String message) {
@@ -63,7 +63,7 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
         colorLevel = level;
     }
 ```
-###3.2OkLogger的巧妙设计
+### 3.2OkLogger的巧妙设计
 首先是默认值的设置，这对于一个工具来说是尤为重要的，因为我们的用户，可能不会按照我们的想法去初始化，这样设计就避免了崩溃的可能性
 这个的tag是默认写死的，如果要看OkGo的异常信息，需要输入filter，OkGo
 ```java
@@ -89,14 +89,14 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
 这里你差不多理解了自定义view的几个构造函数的意义。
 
 另外对于相应的属性提供，get和set方法肯定是必不可少的
-##4.连接超时时间设置
+## 4.连接超时时间设置
 ```java
  //如果使用默认的 60秒,以下三行也不需要传
  .setConnectTimeout(OkGo.DEFAULT_MILLISECONDS)  //全局的连接超时时间
  .setReadTimeOut(OkGo.DEFAULT_MILLISECONDS)     //全局的读取超时时间
  .setWriteTimeOut(OkGo.DEFAULT_MILLISECONDS)    //全局的写入超时时间
 ```
-##5.缓存设置
+## 5.缓存设置
 ```java
 //可以全局统一设置缓存模式,默认是不使用缓存,可以不传,具体其他模式看 github 介绍 https://github.com/jeasonlzy/
 .setCacheMode(CacheMode.NO_CACHE)
