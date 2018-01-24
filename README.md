@@ -107,3 +107,39 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
 Google并不推荐Enum的写法，会占用两倍的内存，这里可以使用静态变量替代。
 ### 5.2CacheEntity
 >使用缓存前，必须让缓存的数据javaBean对象实现Serializable接口，否者会报NotSerializableException。 因为缓存的原理是将对象序列化后直接写入 数据库中，如果不实现Serializable接口，会导致对象无法序列化，进而无法写入到数据库中，也就达不到缓存的效果。
+####无论对于哪种缓存模式，都可以指定一个cacheKey，建议针对不同需要缓存的页面设置不同的cacheKey，如果相同，会导致数据覆盖。
+重要属性的get和set，以及通用方法的封装，这是每一个类都要做的事情。
+### 5.3CacheDao,DataBaseDao,CacheHelper
+数据库相关操作，封装的不错，自己也想按照这个封装一个方便时使用的数据库，我想，这就是[litepal](https://github.com/LitePalFramework/LitePal)的初衷吧(郭神)
+### 5.4Cachemanager
+对于这种enum类的写法不太熟悉，后期需要恶补基础，这个类的作用是读取缓存，并且加锁，所以是线程安全的。
+```java
+public CacheEntity<Object> get(String key) {
+    mLock.lock();
+    try {
+        return cacheDao.get(key);
+    } finally {
+        mLock.unlock();
+    }
+}
+```
+## 6.重试次数
+```java
+ //可以全局统一设置超时重连次数,默认为三次,那么最差的情况会请求4次(一次原始请求,三次重连请求),不需要可以设置为0
+.setRetryCount(3)
+```
+调用处 BaseRequest
+```java
+//超时重试次数
+retryCount = go.getRetryCount();
+```
+BaseRequest的retryCount调用处CacheCall
+```java
+if (e instanceof SocketTimeoutException && currentRetryCount < baseRequest.getRetryCount()) {
+    //超时重试处理
+    currentRetryCount++;
+    okhttp3.Call newCall = baseRequest.generateCall(call.request());
+    newCall.enqueue(this);
+}
+```
+既然如此让我们一探Request和Call的究竟吧
