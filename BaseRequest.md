@@ -186,8 +186,11 @@ public okhttp3.Call generateCall(Request request) {
 }
 ```
 ### 8.同步请求（execute()）
+```java
 /** 普通调用，阻塞方法，同步请求执行 */
 public Response execute() throws IOException {
     return getCall().execute();
 }
+```
+图片来自OkGo2.x的文档
 ![](https://github.com/ainiyiwan/OkGo2.x/blob/master/picture/execute.jpg)
