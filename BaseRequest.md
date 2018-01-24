@@ -126,6 +126,7 @@ mDelivery = new Handler(Looper.getMainLooper());
 
 #### 6.3 OkHttp的使用
 其实这里牵扯到一个OkHttp的使用问题，[这篇教程](http://blog.csdn.net/iispring/article/details/51661195)写得很详细，当然，最简单明了的当然还是OkHttp官网的[教程](https://square.github.io/okhttp/)
+
 get请求
 ```java
 OkHttpClient client = new OkHttpClient();
