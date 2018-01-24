@@ -9,3 +9,17 @@ public CacheMode getCacheMode() {
     return cacheMode;
 }
 ```
+###2.AbsCallback属性
+get属性被CacheCall[AbsCallback](https://github.com/ainiyiwan/OkGo2.x/blob/master/AbsCallback.md)调用
+```java
+public AbsCallback getCallback() {
+    return mCallback;
+}
+```
+###3.Converter属性
+get属性被CacheCall[Converter](https://github.com/ainiyiwan/OkGo2.x/blob/master/Converter.md)调用
+```java
+public Converter getConverter() {
+    return mConverter;
+}
+```
