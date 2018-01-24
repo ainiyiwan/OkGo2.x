@@ -103,3 +103,7 @@ OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4
 //可以全局统一设置缓存时间,默认永不过期,具体使用方法看 github 介绍
 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)
 ```
+### 5.1CacheMode
+Google并不推荐Enum的写法，会占用两倍的内存，这里可以使用静态变量替代。
+### 5.2CacheEntity
+>使用缓存前，必须让缓存的数据javaBean对象实现Serializable接口，否者会报NotSerializableException。 因为缓存的原理是将对象序列化后直接写入 数据库中，如果不实现Serializable接口，会导致对象无法序列化，进而无法写入到数据库中，也就达不到缓存的效果。
