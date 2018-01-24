@@ -190,3 +190,4 @@ public okhttp3.Call generateCall(Request request) {
 public Response execute() throws IOException {
     return getCall().execute();
 }
+![](https://github.com/ainiyiwan/OkGo2.x/blob/master/picture/execute.jpg)
