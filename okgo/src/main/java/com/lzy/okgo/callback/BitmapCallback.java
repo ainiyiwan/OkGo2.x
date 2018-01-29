@@ -12,7 +12,7 @@ import okhttp3.Response;
  * 版    本：1.0
  * 创建日期：2016/1/12
  * 描    述：返回图片的Bitmap，这里没有进行图片的缩放，可能会发生 OOM
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public abstract class BitmapCallback extends AbsCallback<Bitmap> {

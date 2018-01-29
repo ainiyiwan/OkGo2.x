@@ -9,7 +9,7 @@ import okhttp3.Response;
  * 版    本：1.0
  * 创建日期：16/9/11
  * 描    述：所有回调的包装类,空实现
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public class AbsCallbackWrapper<T> extends AbsCallback<T> {

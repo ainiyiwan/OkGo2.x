@@ -5,6 +5,9 @@ import android.database.Cursor;
 
 import java.util.List;
 
+/**
+ * have seen
+ */
 class CacheDao<T> extends DataBaseDao<CacheEntity<T>> {
 
     public CacheDao() {

@@ -29,7 +29,6 @@ import okio.Buffer;
  * ================================================
  */
 public class HttpLoggingInterceptor implements Interceptor {
-
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
     private volatile Level printLevel = Level.NONE;

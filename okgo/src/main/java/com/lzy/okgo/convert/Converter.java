@@ -8,7 +8,7 @@ import okhttp3.Response;
  * 版    本：1.0
  * 创建日期：2016/9/11
  * 描    述：网络数据的转换接口
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public interface Converter<T> {

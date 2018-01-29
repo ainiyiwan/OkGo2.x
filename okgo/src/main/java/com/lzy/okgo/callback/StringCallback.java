@@ -10,7 +10,7 @@ import okhttp3.Response;
  * 版    本：1.0
  * 创建日期：2016/9/11
  * 描    述：返回字符串类型的数据
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public abstract class StringCallback extends AbsCallback<String> {

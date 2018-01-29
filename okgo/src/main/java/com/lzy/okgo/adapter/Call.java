@@ -10,7 +10,7 @@ import com.lzy.okgo.request.BaseRequest;
  * 版    本：1.0
  * 创建日期：2016/9/11
  * 描    述：请求的包装类
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public interface Call<T> {

@@ -13,6 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * have seen
+ */
 public class CacheEntity<T> implements Serializable {
 
     private static final long serialVersionUID = -4337711009801627866L;

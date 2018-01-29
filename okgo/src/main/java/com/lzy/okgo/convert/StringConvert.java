@@ -8,7 +8,7 @@ import okhttp3.Response;
  * 版    本：1.0
  * 创建日期：16/9/11
  * 描    述：字符串的转换器
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public class StringConvert implements Converter<String> {

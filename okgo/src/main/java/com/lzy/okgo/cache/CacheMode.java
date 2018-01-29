@@ -15,4 +15,5 @@ public enum CacheMode {
 
     /** 先使用缓存，不管是否存在，仍然请求网络 */
     FIRST_CACHE_THEN_REQUEST,
+
 }

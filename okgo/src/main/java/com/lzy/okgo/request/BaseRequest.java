@@ -73,7 +73,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
         if (go.getCacheMode() != null) cacheMode = go.getCacheMode();
         cacheTime = go.getCacheTime();
         //超时重试次数
-        retryCount = go.getRetryCount();
+            retryCount = go.getRetryCount();
     }
 
     @SuppressWarnings("unchecked")
@@ -316,6 +316,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
     public abstract RequestBody generateRequestBody();
 
     /** 对请求body进行包装，用于回调上传进度 */
+    //have seen
     public RequestBody wrapRequestBody(RequestBody requestBody) {
         ProgressRequestBody progressRequestBody = new ProgressRequestBody(requestBody);
         progressRequestBody.setListener(new ProgressRequestBody.Listener() {
@@ -336,6 +337,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
     public abstract Request generateRequest(RequestBody requestBody);
 
     /** 根据当前的请求参数，生成对应的 Call 任务 */
+    //have seen
     public okhttp3.Call generateCall(Request request) {
         mRequest = request;
         if (readTimeOut <= 0 && writeTimeOut <= 0 && connectTimeout <= 0 && interceptors.size() == 0) {
@@ -355,6 +357,7 @@ public abstract class BaseRequest<R extends BaseRequest> {
     }
 
     /** 获取同步call对象 */
+    //have seen
     public okhttp3.Call getCall() {
         //构建请求体，返回call对象
         RequestBody requestBody = generateRequestBody();

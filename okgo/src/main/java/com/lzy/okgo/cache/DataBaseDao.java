@@ -10,6 +10,9 @@ import com.lzy.okgo.utils.OkLogger;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * have seen
+ */
 public abstract class DataBaseDao<T> {
 
     private SQLiteOpenHelper helper;

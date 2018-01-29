@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * have seen
+ */
 public enum CacheManager {
 
     INSTANCE;

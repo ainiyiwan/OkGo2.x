@@ -56,7 +56,11 @@ public R params(String key, String value, boolean... isReplace) {
 ```java
 /** 根据不同的请求方式和参数，生成不同的RequestBody */
     public abstract RequestBody generateRequestBody();
+    
+    public abstract Request generateRequest(RequestBody requestBody);
 ```
+
+Get请求是不需要RequestBody的，所以肯定是返回Null。
 ### 6.通用方法的包装（RequestBody）
 ```java
 /** 对请求body进行包装，用于回调上传进度 */
@@ -195,3 +199,16 @@ public Response execute() throws IOException {
 ```
 图片来自OkGo2.x的文档
 ![](https://github.com/ainiyiwan/OkGo2.x/blob/master/picture/execute.jpg)
+### 9.异步请求
+```java
+/** 非阻塞方法，异步请求，但是回调在子线程中执行 */
+    @SuppressWarnings("unchecked")
+    public <T> void execute(AbsCallback<T> callback) {
+        mCallback = callback;
+        mConverter = callback;
+        new CacheCall<T>(this).execute(callback);
+    }
+```
+下面进入[CacheCall](https://github.com/ainiyiwan/OkGo2.x/blob/master/CacheCall.md)的研究
+
+## 完结

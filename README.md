@@ -143,3 +143,34 @@ if (e instanceof SocketTimeoutException && currentRetryCount < baseRequest.getRe
 }
 ```
 既然如此让我们一探[BaseRequest](https://github.com/ainiyiwan/OkGo2.x/blob/master/BaseRequest.md)和[CacheCall](https://github.com/ainiyiwan/OkGo2.x/blob/master/CacheCall.md)的究竟吧
+
+## 7.Cookie管理
+```java
+//如果不想让框架管理cookie（或者叫session的保持）,以下不需要
+//.setCookieStore(new MemoryCookieStore())            //cookie使用内存缓存（app退出后，cookie消失）
+.setCookieStore(new PersistentCookieStore())        //cookie持久化存储，如果cookie不过期，则一直有效
+```
+Cookie的详细介绍见[这里](https://github.com/jeasonlzy/okhttp-OkGo/wiki/Cookie#%E7%A7%91%E6%99%AE%E6%A6%82%E5%BF%B5)
+## 8.设置https的证书
+```java
+.setCertificates()                                  //方法一：信任所有证书,不安全有风险
+//  .setCertificates(new SafeTrustManager())            //方法二：自定义信任规则，校验服务端证书
+//  .setCertificates(getAssets().open("srca.cer"))      //方法三：使用预埋证书，校验服务端证书（自签名证书）
+//  //方法四：使用bks证书和密码管理客户端证书（双向认证），使用预埋证书，校验服务端证书（自签名证书）
+//  .setCertificates(getAssets().open("xxx.bks"), "123456", getAssets().open("yyy.cer"))//
+
+  //配置https的域名匹配规则，详细看demo的初始化介绍，不需要就不要加入，使用不当会导致https握手失败
+//  .setHostnameVerifier(new SafeHostnameVerifier())
+```
+关于Https，看鸿洋大神的[这篇](http://blog.csdn.net/lmj623565791/article/details/48129405)文章
+## 9.设置公共头和公共参数
+```java
+ //这两行同上，不需要就不要加入
+.addCommonHeaders(headers)  //设置全局公共头
+.addCommonParams(params);   //设置全局公共参数
+```
+
+## 10.福利
+关于OkGO的代码结构请看，uml文件夹下的OkGo2.x.mdj文件，请下载StarUML软件观看，StarUML是一个很好用的UML软件，并且可以一直免费用下去
+
+# 完结

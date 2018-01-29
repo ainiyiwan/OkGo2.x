@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.utils.OkLogger;
 
+/**
+ * have seen
+ */
 class CacheHelper extends SQLiteOpenHelper {
 
     public static final String DB_CACHE_NAME = "okgo_cache.db";
