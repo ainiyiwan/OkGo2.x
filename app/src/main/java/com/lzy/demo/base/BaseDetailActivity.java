@@ -20,6 +20,9 @@ import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.Response;
 
+/**
+ * have seen
+ */
 public abstract class BaseDetailActivity extends BaseActivity {
 
     protected ActionBar actionBar;

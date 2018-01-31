@@ -22,35 +22,41 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    //have seen
     @SuppressWarnings("unchecked")
     public <T extends View> T findView(int id) {
         return (T) findViewById(id);
     }
 
+    //have seen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSystemBarTint();
     }
 
+    //have seen
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
     }
 
+    //have seen
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
         ButterKnife.bind(this);
     }
 
+    //have seen
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
         ButterKnife.bind(this);
     }
 
+    //have seen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -61,16 +67,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    //have seen
     /** 子类可以重写改变状态栏颜色 */
     protected int setStatusBarColor() {
         return getColorPrimary();
     }
 
+    //have seen
     /** 子类可以重写决定是否使用透明状态栏 */
     protected boolean translucentStatusBar() {
         return false;
     }
 
+    //have seen
     /** 设置状态栏颜色 */
     protected void initSystemBarTint() {
         Window window = getWindow();
@@ -108,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return typedValue.data;
     }
 
+    //have seen
     /** 获取深主题色 */
     public int getDarkColorPrimary() {
         TypedValue typedValue = new TypedValue();
@@ -115,6 +125,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return typedValue.data;
     }
 
+    //have seen
     /** 初始化 Toolbar */
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
         toolbar.setTitle(title);
@@ -122,16 +133,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnabled);
     }
 
+    //have seen
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
         initToolBar(toolbar, homeAsUpEnabled, getString(resTitle));
     }
 
+    //have seen
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private ProgressDialog dialog;
 
+    //have seen
     public void showLoading() {
         if (dialog != null && dialog.isShowing()) return;
         dialog = new ProgressDialog(this);
@@ -142,6 +156,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    //have seen
     public void dismissLoading() {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
