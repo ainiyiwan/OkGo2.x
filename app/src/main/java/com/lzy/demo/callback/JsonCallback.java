@@ -62,6 +62,10 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
      *          }
      *     });
      * </pre>
+     *
+     * 我的理解：
+     * DialogCallback<LzyResponse<T>>  getActualTypeArguments 获得LzyResponse<T>
+     *     LzyResponse<T>通过getRawType获得LzyResponse
      */
     @Override
     public T convertSuccess(Response response) throws Exception {
@@ -79,6 +83,34 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
 
         //com.lzy.demo.callback.DialogCallback<com.lzy.demo.model.LzyResponse<com.lzy.demo.model.ServerModel>> 得到类的泛型，包括了泛型参数
         Type genType = getClass().getGenericSuperclass();
+
+
+
+        //////////////////////test/////////////第一步解析出来的：com.lzy.demo.callback.DialogCallback
+        ParameterizedType parameterizedType = (ParameterizedType) genType;
+        Type types = parameterizedType.getRawType();
+        Class classs = (Class) types;
+        String a = classs.getName();
+        ///////////////////////test
+
+
+        //////////////////////test/////////////第二步解析出来的：com.lzy.demo.model.LzyResponse
+        Type[] param2 = ((ParameterizedType) genType).getActualTypeArguments();
+        Type type2 = param2[0];
+        Type rawTypes = ((ParameterizedType) type2).getRawType();
+        Class class2 = (Class) rawTypes;
+        String b = class2.getName();
+        ///////////////////////test
+
+        //////////////////////test/////////////第三步解析出来的：com.lzy.demo.model.ServerModel
+        Type[] param3 = ((ParameterizedType) type2).getActualTypeArguments();
+        Type type3 = param3[0];
+//        Type rawType3 = ((ParameterizedType) type3).getRawType();
+        Class class3 = (Class) type3;
+        String c = class3.getName();
+        ///////////////////////test
+
+
         //从上述的类中取出真实的泛型参数，有些类可能有多个泛型，所以是数值
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
         //我们的示例代码中，只有一个泛型，所以取出第一个，得到如下结果
