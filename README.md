@@ -1,6 +1,8 @@
 # OkGo2.x
 OkGo2.x学习记录：https://github.com/jeasonlzy/okhttp-OkGo/tree/v2.1.4 
 
+项目使用总结见[这里](https://github.com/ainiyiwan/OkGo2.x/blob/master/use/use.md)
+
 ## 1.调用init()方法，保存一个context，具体用处？
 
 ## 2.初始化的时候调用getInstance()，获取OkGo的单例
