@@ -21,7 +21,7 @@ import okhttp3.Headers;
 import okhttp3.Response;
 
 /**
- * have seen
+ *  have seen
  */
 public abstract class BaseDetailActivity extends BaseActivity {
 

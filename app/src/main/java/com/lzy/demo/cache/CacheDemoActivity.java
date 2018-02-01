@@ -20,7 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+//have seen
 public class CacheDemoActivity extends BaseActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;

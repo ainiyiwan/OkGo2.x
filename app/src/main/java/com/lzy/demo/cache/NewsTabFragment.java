@@ -119,6 +119,52 @@ public class NewsTabFragment extends BaseFragment implements SwipeRefreshLayout.
                         setRefreshing(false);
                     }
                 });
+
+        //我写的
+        OkGo.get(Urls.NEWS)
+                .params("channelName", fragmentTitle)
+                .params("page", 1)
+                .cacheKey("TabFragment_"+fragmentTitle)
+                .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
+                .execute(new NewsCallback<NewsResponse<NewsModel>>() {
+                    @Override
+                    public void onSuccess(NewsResponse<NewsModel> newsResponse, Call call, Response response) {
+                        NewsModel newsModel = newsResponse.showapi_res_body;
+                        currentPage = newsModel.pagebean.currentPage;
+                        newsAdapter.setNewData(newsModel.pagebean.contentlist);
+                    }
+
+                    @Override
+                    public void onCacheSuccess(NewsResponse<NewsModel> newsResponse, Call call) {
+                        //一般来说,只需呀第一次初始化界面的时候需要使用缓存刷新界面,以后不需要,所以用一个变量标识
+                        if (!isInitCache) {
+                            //一般来说,缓存回调成功和网络回调成功做的事情是一样的,所以这里直接回调onSuccess
+                            onSuccess(newsResponse, call, null);
+                            isInitCache = true;
+                        }
+                    }
+
+                    @Override
+                    public void onCacheError(Call call, Exception e) {
+                        //获取缓存失败的回调方法,一般很少用到,需要就复写,不需要不用关心
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        //网络请求失败的回调,一般会弹个Toast
+                        showToast(e.getMessage());
+                    }
+
+                    @Override
+                    public void onAfter(@Nullable NewsResponse<NewsModel> newsResponse, @Nullable Exception e) {
+                        super.onAfter(newsResponse, e);
+                        //可能需要移除之前添加的布局
+                        newsAdapter.removeAllFooterView();
+                        //最后调用结束刷新的方法
+                        setRefreshing(false);
+                    }
+                });
     }
 
     /** 上拉加载 */
@@ -128,6 +174,34 @@ public class NewsTabFragment extends BaseFragment implements SwipeRefreshLayout.
                 .params("channelName", fragmentTitle)//
                 .params("page", currentPage + 1)     //上拉加载更多
                 .cacheMode(CacheMode.NO_CACHE)       //上拉不需要缓存
+                .execute(new NewsCallback<NewsResponse<NewsModel>>() {
+                    @Override
+                    public void onSuccess(NewsResponse<NewsModel> newsResponse, Call call, Response response) {
+                        NewsModel newsModel = newsResponse.showapi_res_body;
+                        currentPage = newsModel.pagebean.currentPage;
+                        newsAdapter.addData(newsModel.pagebean.contentlist);
+                        //显示没有更多数据
+                        if (newsModel.pagebean.allPages == currentPage) {
+                            newsAdapter.loadComplete();         //加载完成
+                            View noDataView = inflater.inflate(R.layout.item_no_data, (ViewGroup) recyclerView.getParent(), false);
+                            newsAdapter.addFooterView(noDataView);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        //显示数据加载失败,点击重试
+                        newsAdapter.showLoadMoreFailedView();
+                        //网络请求失败的回调,一般会弹个Toast
+                        showToast(e.getMessage());
+                    }
+                });
+
+        OkGo.get(Urls.NEWS)
+                .params("channelName", fragmentTitle)
+                .params("page", currentPage + 1)
+                .cacheMode(CacheMode.NO_CACHE)
                 .execute(new NewsCallback<NewsResponse<NewsModel>>() {
                     @Override
                     public void onSuccess(NewsResponse<NewsModel> newsResponse, Call call, Response response) {

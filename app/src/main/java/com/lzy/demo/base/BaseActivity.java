@@ -20,6 +20,7 @@ import com.lzy.imagepicker.view.SystemBarTintManager;
 
 import butterknife.ButterKnife;
 
+//have seen
 public abstract class BaseActivity extends AppCompatActivity {
 
     //have seen

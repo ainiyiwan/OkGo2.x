@@ -62,6 +62,22 @@ public class HttpsActivity extends BaseDetailActivity {
                         handleError(call, response);
                     }
                 });
+        OkGo.get("https://github.com/jeasonlzy")
+                .tag(this)
+                .headers("header1","headerValue1")
+                .params("param1","paramValue1")
+                .execute(new StringDialogCallback(this) {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        handleResponse(s, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+                });
     }
 
     @OnClick(R.id.btn_https_request)
@@ -72,6 +88,24 @@ public class HttpsActivity extends BaseDetailActivity {
             OkGo.get("https://kyfw.12306.cn/otn")//
                     .tag(this)//
                     .headers("Connection", "close")           //如果对于部分自签名的https访问不成功，需要加上该控制头
+                    .headers("header1", "headerValue1")//
+                    .params("param1", "paramValue1")//
+                    .execute(new StringDialogCallback(this) {
+                        @Override
+                        public void onSuccess(String data, Call call, Response response) {
+                            handleResponse(data, call, response);
+                        }
+
+                        @Override
+                        public void onError(Call call, Response response, Exception e) {
+                            super.onError(call, response, e);
+                            handleError(call, response);
+                        }
+                    });
+
+            OkGo.get("https://kyfw.12306.cn/otn")
+                    .tag(this)
+                    .headers("Connection", "close")
                     .headers("header1", "headerValue1")//
                     .params("param1", "paramValue1")//
                     .execute(new StringDialogCallback(this) {

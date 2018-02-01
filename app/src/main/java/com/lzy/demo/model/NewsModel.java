@@ -9,7 +9,7 @@ import java.util.List;
  * 版    本：1.0
  * 创建日期：16/9/1
  * 描    述：
- * 修订历史：
+ * 修订历史：//have seen
  * ================================================
  */
 public class NewsModel implements Serializable {

@@ -13,7 +13,7 @@ import com.lzy.okgo.request.BaseRequest;
  * 版    本：1.0
  * 创建日期：2016/1/14
  * 描    述：对于网络请求是否需要弹出进度对话框
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public abstract class DialogCallback<T> extends JsonCallback<T> {

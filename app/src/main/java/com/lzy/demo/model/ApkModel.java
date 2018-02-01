@@ -2,6 +2,7 @@ package com.lzy.demo.model;
 
 import java.io.Serializable;
 
+//have seen
 public class ApkModel implements Serializable{
     private static final long serialVersionUID = 2072893447591548402L;
 

@@ -37,6 +37,9 @@ public class BitmapRequestActivity extends BaseDetailActivity {
 
     @OnClick(R.id.requestImage)
     public void requestJson(View view) {
+        /**
+         * 我认为大部分都会返回一个图片的URL，所以，加载图片，我选择Glide
+         */
         OkGo.get(Urls.URL_IMAGE)//
                 .tag(this)//
                 .headers("header1", "headerValue1")//
@@ -54,5 +57,30 @@ public class BitmapRequestActivity extends BaseDetailActivity {
                         handleError(call, response);
                     }
                 });
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

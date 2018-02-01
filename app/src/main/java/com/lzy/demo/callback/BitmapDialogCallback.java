@@ -15,7 +15,7 @@ import com.lzy.okgo.request.BaseRequest;
  * 版    本：1.0
  * 创建日期：2016/1/14
  * 描    述：请求图图片的时候显示对话框
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public abstract class BitmapDialogCallback extends BitmapCallback {

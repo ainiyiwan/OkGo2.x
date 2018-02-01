@@ -37,6 +37,7 @@ public class CacheActivity extends BaseDetailActivity {
         super.onDestroy();
         //Activity销毁时，取消网络请求
         OkGo.getInstance().cancelTag(this);
+        OkGo.getInstance().cancelTag(this);
     }
 
     @OnClick(R.id.getAll)
@@ -69,6 +70,17 @@ public class CacheActivity extends BaseDetailActivity {
                 .headers("header1", "headerValue1")//
                 .params("param1", "paramValue1")//
                 .execute(new CacheCallBack(this));
+
+        OkGo.get(Urls.URL_CACHE)
+                .tag(this)
+                .cacheMode(CacheMode.NO_CACHE)
+                .cacheKey("no_cache")
+                .cacheTime(5000)
+                .headers("header1","headerValues1")
+                .params("param1", "paramValues1")
+                .execute(new CacheCallBack(this));
+
+
     }
 
     @OnClick(R.id.cache_default)
@@ -80,6 +92,15 @@ public class CacheActivity extends BaseDetailActivity {
                 .cacheTime(5000)//对于默认的缓存模式,该时间无效,依靠的是服务端对304缓存的控制
                 .headers("header1", "headerValue1")//
                 .params("param1", "paramValue1")//
+                .execute(new CacheCallBack(this));
+
+        OkGo.get(Urls.URL_CACHE)
+                .tag(this)
+                .cacheMode(CacheMode.DEFAULT)
+                .cacheKey("cache_default")
+                .cacheTime(5000)
+                .headers("header1","headerValue1")
+                .params("param1","paramVales1")
                 .execute(new CacheCallBack(this));
     }
 
@@ -93,6 +114,15 @@ public class CacheActivity extends BaseDetailActivity {
                 .headers("header1", "headerValue1")//
                 .params("param1", "paramValue1")//
                 .execute(new CacheCallBack(this));
+
+        OkGo.get(Urls.URL_CACHE)
+                .tag(this)
+                .cacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
+                .cacheKey("request_failed_read_cache")
+                .cacheTime(5000)
+                .headers("header1", "headerValues1")
+                .params("param1","paramValue1")
+                .execute(new CacheCallBack(this));
     }
 
     @OnClick(R.id.if_none_cache_request)
@@ -101,7 +131,7 @@ public class CacheActivity extends BaseDetailActivity {
                 .tag(this)//
                 .cacheMode(CacheMode.IF_NONE_CACHE_REQUEST)//
                 .cacheKey("if_none_cache_request")//
-                .cacheTime(5000)            // 单位毫秒.5秒后过期
+                .cacheTime(500000)            // 单位毫秒.5秒后过期
                 .headers("header1", "headerValue1")//
                 .params("param1", "paramValue1")//
                 .execute(new CacheCallBack(this));
@@ -113,7 +143,7 @@ public class CacheActivity extends BaseDetailActivity {
                 .tag(this)//
                 .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)//
                 .cacheKey("only_read_cache")//
-                .cacheTime(5000)            // 单位毫秒.5秒后过期
+                .cacheTime(500000)            // 单位毫秒.5秒后过期
                 .headers("header1", "headerValue1")//
                 .params("param1", "paramValue1")//
                 .execute(new CacheCallBack(this));

@@ -144,5 +144,63 @@ public class FormUploadActivity extends BaseDetailActivity {
                         pbProgress.setProgress((int) (progress * 100));
                     }
                 });
+        OkGo.post(Urls.URL_FORM_UPLOAD)
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .headers("header2", "headerValue2")//
+                .params("param1", "paramValue1")//
+                .params("param2", "paramValue2")//
+                .addFileParams("file", files)
+                .execute(new JsonCallback<LzyResponse<ServerModel>>() {
+
+                    @Override
+                    public void onBefore(BaseRequest request) {
+                        super.onBefore(request);
+                        btnFormUpload.setText("正在上传中...");
+                    }
+
+                    @Override
+                    public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                        btnFormUpload.setText("上传完成");
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                        btnFormUpload.setText("上传出错");
+                    }
+
+                    @Override
+                    public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+                        System.out.println("upProgress -- " + totalSize + "  " + currentSize + "  " + progress + "  " + networkSpeed);
+
+                        String downloadLength = Formatter.formatFileSize(getApplicationContext(), currentSize);
+                        String totalLength = Formatter.formatFileSize(getApplicationContext(), totalSize);
+                        tvDownloadSize.setText(downloadLength + "/" + totalLength);
+                        String netSpeed = Formatter.formatFileSize(getApplicationContext(), networkSpeed);
+                        tvNetSpeed.setText(netSpeed + "/S");
+                        tvProgress.setText((Math.round(progress * 10000) * 1.0f / 100) + "%");
+                        pbProgress.setMax(100);
+                        pbProgress.setProgress((int) (progress * 100));
+                    }
+                });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

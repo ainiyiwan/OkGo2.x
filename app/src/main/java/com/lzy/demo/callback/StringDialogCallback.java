@@ -14,7 +14,7 @@ import com.lzy.okgo.request.BaseRequest;
  * 版    本：1.0
  * 创建日期：2016/4/8
  * 描    述：我的Github地址  https://github.com/jeasonlzy
- * 修订历史：
+ * 修订历史：have seen
  * ================================================
  */
 public abstract class StringDialogCallback extends StringCallback {

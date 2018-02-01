@@ -55,6 +55,22 @@ public class JsonRequestActivity extends BaseDetailActivity {
                         handleError(call, response);
                     }
                 });
+        OkGo.get(Urls.URL_JSONOBJECT)
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .params("param1", "paramValue1")//
+                .execute(new DialogCallback<LzyResponse<ServerModel>>(this) {
+                    @Override
+                    public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+                });
     }
 
     /**
@@ -62,6 +78,22 @@ public class JsonRequestActivity extends BaseDetailActivity {
      */
     @OnClick(R.id.requestJsonArray)
     public void requestJsonArray(View view) {
+        OkGo.get(Urls.URL_JSONARRAY)//
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .params("param1", "paramValue1")//
+                .execute(new DialogCallback<LzyResponse<List<ServerModel>>>(this) {
+                    @Override
+                    public void onSuccess(LzyResponse<List<ServerModel>> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+                });
         OkGo.get(Urls.URL_JSONARRAY)//
                 .tag(this)//
                 .headers("header1", "headerValue1")//

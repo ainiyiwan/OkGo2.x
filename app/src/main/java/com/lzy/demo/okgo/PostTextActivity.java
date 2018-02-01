@@ -18,7 +18,6 @@ import java.util.HashMap;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
-import okhttp3.MediaType;
 import okhttp3.Response;
 
 public class PostTextActivity extends BaseDetailActivity {
@@ -65,6 +64,22 @@ public class PostTextActivity extends BaseDetailActivity {
                     }
 
                 });
+        OkGo.post(Urls.URL_TEXT_UPLOAD)
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .upJson(jsonObject)
+                .execute(new DialogCallback<LzyResponse<ServerModel>>(this) {
+                    @Override
+                    public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+                });
     }
 
     @OnClick(R.id.postString)
@@ -88,6 +103,23 @@ public class PostTextActivity extends BaseDetailActivity {
                     }
 
                 });
+
+        OkGo.post(Urls.URL_TEXT_UPLOAD)
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .upString("aaaaaaaaaaaa")
+                .execute(new DialogCallback<LzyResponse<ServerModel>>(this) {
+                    @Override
+                    public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+                });
     }
 
     @OnClick(R.id.postBytes)
@@ -97,6 +129,23 @@ public class PostTextActivity extends BaseDetailActivity {
                 .headers("header1", "headerValue1")//
 //                .params("param1", "paramValue1")// 这里不要使用params，upBytes 与 params 是互斥的，只有 upBytes 的数据会被上传
                 .upBytes("这是字节数据".getBytes())//
+                .execute(new DialogCallback<LzyResponse<ServerModel>>(this) {
+                    @Override
+                    public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
+                        handleResponse(responseData.data, call, response);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        handleError(call, response);
+                    }
+
+                });
+        OkGo.post(Urls.URL_TEXT_UPLOAD)//
+                .tag(this)//
+                .headers("header1", "headerValue1")//
+                .upBytes("dfd".getBytes())
                 .execute(new DialogCallback<LzyResponse<ServerModel>>(this) {
                     @Override
                     public void onSuccess(LzyResponse<ServerModel> responseData, Call call, Response response) {
